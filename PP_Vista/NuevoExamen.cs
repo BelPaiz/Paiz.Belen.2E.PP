@@ -22,6 +22,10 @@ namespace PP_Vista
             InitializeComponent();
             lstb_instanciasExamen.Items.AddRange(typeof(E_instanciasExamen).GetEnumNames());          
         }
+        /// <summary>
+        /// permite retornar el examen creado
+        /// </summary>
+        /// <returns></returns>
         public Examen GetExamen()
         {
             return nuevoExamen;

@@ -14,7 +14,6 @@ namespace PP_Vista
 {
     public partial class frm_Inicio_Alumno : Form
     {
-        private string _user;
         private Alumno usuario;
         private List<Cursada> cursadas;
         public Cursada cursada = new Cursada();
@@ -29,9 +28,8 @@ namespace PP_Vista
         {
             InitializeComponent();
         }
-        public frm_Inicio_Alumno(string user, Alumno alumno, List<Materia> maters) :this()
+        public frm_Inicio_Alumno(Alumno alumno, List<Materia> maters) :this()
         {
-            _user = user;
             usuario = alumno;
             materias = maters;
             cursadas = alumno.Cursada;  
@@ -39,15 +37,20 @@ namespace PP_Vista
 
         private void frm_Inicio_Alumno_Load(object sender, EventArgs e)
         {
-            this.lbl_bienvenida.Text = "Bienvenid@ " + _user;
+            this.lbl_bienvenida.Text = usuario.Saludar();
 
             RecargarCursadas(cursadas);
+            rtxb_infoMaterias.Text = "Seleccione una materia para ver la informacion de la cursada.";
         }
 
         private void frm_Inicio_Alumno_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
         }
+        /// <summary>
+        /// Rellena el data grid view con la informacion de la lista de cursadas del alumno
+        /// </summary>
+        /// <param name="curs"></param>
         private void RecargarCursadas(List<Cursada>curs)
         {
             foreach(Cursada c in curs)
@@ -62,6 +65,7 @@ namespace PP_Vista
                     estadoCursada = "Regular";
                 }
                 dtg_cursadas.Rows[j].Cells[3].Value = estadoCursada;
+                c.ConfirmarCondicionDeAprobacion();
                 if (c.Aprobada == 1)
                 {
                     cursadaAprobada = "si";
@@ -71,6 +75,10 @@ namespace PP_Vista
             }
             
         }
+        /// <summary>
+        /// Busca dentro de la lista de materias la informacion de la materias en curso
+        /// </summary>
+        /// <param name="c"></param>
         private void BuscarInfoMateria(Cursada c)
         {
             foreach(Materia m in materias)
@@ -83,6 +91,11 @@ namespace PP_Vista
                 }
             }
         }
+        /// <summary>
+        /// Extrae el nombre de la materia correlativa buscandola en la lista de materias con su id
+        /// </summary>
+        /// <param name="correlat"></param>
+        /// <returns></returns> el nombre o un string que indica que no tiene correlativa caso contrario.
         private string NombreCorrelativa(int correlat)
         {
             foreach(Materia m in materias)
@@ -102,6 +115,13 @@ namespace PP_Vista
             {
                 string value = (string)dtg_cursadas.Rows[n].Cells[0].Value;
                 materiaSeleccion = value;
+            }
+            foreach(Cursada c in cursadas)
+            {
+                if(c.Materia == materiaSeleccion)
+                {
+                    rtxb_infoMaterias.Text = c.MostrarInfoCursada();
+                }
             }
         }
 
@@ -154,6 +174,11 @@ namespace PP_Vista
             {
                 lbl_info.Text = "Incripcion cancelada por el usuario";
             }
+        }
+
+        private void btn_salir_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

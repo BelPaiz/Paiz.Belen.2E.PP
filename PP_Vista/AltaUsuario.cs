@@ -26,6 +26,10 @@ namespace PP_Vista
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// comprueba cual es el tipo del usuario creado
+        /// </summary>
+        /// <returns></returns> el usuario creado, null si aun no se creo
         public Usuario GetUsuario()
         {
             if(nuevoAdmin != null)
@@ -42,7 +46,10 @@ namespace PP_Vista
             }
             return null;
         }
-
+        /// <summary>
+        ///  Guarda los distintos datos ingresados por el usuario en las variables asignadas
+        /// </summary>
+        /// <returns></returns> true si todos los datos se guardaron con exito, false caso contrario
         public bool CargaDatos()
         {
             int todoOk = 0;

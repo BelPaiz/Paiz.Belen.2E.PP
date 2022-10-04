@@ -13,7 +13,7 @@ namespace PP_Vista
 {
     public partial class frm_inicioAdmin : Form
     {
-        private string _user;
+        private Admin _usuario;
         private List<Alumno> _alumnos = new List<Alumno>();
         private List<Profesor> _profes = new List<Profesor>();
         private List<Admin> _administ = new List<Admin>();
@@ -27,9 +27,9 @@ namespace PP_Vista
         {
             InitializeComponent();
         }
-        public frm_inicioAdmin(string usuario, List<Alumno> alumns, List<Profesor> prof, List<Admin>adminds, List<Materia> materias) : this()
+        public frm_inicioAdmin(Admin user, List<Alumno> alumns, List<Profesor> prof, List<Admin>adminds, List<Materia> materias) : this()
         {
-            _user = usuario;
+            _usuario = user;
             _alumnos = alumns;
             _profes = prof;
             _administ = adminds;
@@ -38,7 +38,7 @@ namespace PP_Vista
 
         private void frm_inicioAdmin_Load(object sender, EventArgs e)
         {
-            this.lbl_bienvenida.Text = "Administrador/a " + _user;
+            this.lbl_bienvenida.Text = _usuario.Saludar();
 
             RecargarListaAlumnos();
             RecargarListaProfesores();
@@ -164,7 +164,7 @@ namespace PP_Vista
             }
             else
             {
-                MessageBox.Show("Carga Cancelada");
+                MessageBox.Show("Carga Cancelada", "Cancelada", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -200,34 +200,48 @@ namespace PP_Vista
                 }             
             }
         }
+        /// <summary>
+        /// Rellena la informacion de la lista de materias en los data grid view
+        /// </summary>
         private void RecargarListaMaterias()
         {
             foreach (Materia mater in _materias)
             {
                 int j = dtg_listaMaterias.Rows.Add();
                 dtg_listaMaterias.Rows[j].Cells[0].Value = mater.MostrarId();
-                dtg_listaMaterias.Rows[j].Cells[1].Value = mater.MostrarNombre();
-                dtg_listaMaterias.Rows[j].Cells[2].Value = mater.MostrarCuatri();
+                dtg_listaMaterias.Rows[j].Cells[1].Value = mater.Nombre;
+                dtg_listaMaterias.Rows[j].Cells[2].Value = mater.Cuatrim;
             }
         }
+        /// <summary>
+        ///  Rellena la informacion de la lista de profesores en los data grid view
+        /// </summary>
         private void RecargarListaProfesores()
         {
             foreach (Profesor prof in _profes)
             {
                 int i = dtg_listaProfes.Rows.Add();
                 dtg_listaProfes.Rows[i].Cells[0].Value = prof.MostrarId();
-                dtg_listaProfes.Rows[i].Cells[1].Value = prof.MostrarNombre();
+                dtg_listaProfes.Rows[i].Cells[1].Value = prof.MostrarNombreCompleto();
             }
         }
+        /// <summary>
+        ///  Rellena la informacion de la lista de alumnos en los data grid view
+        /// </summary>
         private void RecargarListaAlumnos()
         {
             foreach (Alumno alumno in _alumnos)
             {
                 int n = dtg_listaAlumnos.Rows.Add();
                 dtg_listaAlumnos.Rows[n].Cells[0].Value = alumno.MostrarId();
-                dtg_listaAlumnos.Rows[n].Cells[1].Value = alumno.MostrarNombre();
+                dtg_listaAlumnos.Rows[n].Cells[1].Value = alumno.MostrarNombreCompleto();
             }
         }
+        /// <summary>
+        /// Busca el dni del nuevo usuario en las diferentes listas para comprobar si ya existe
+        /// </summary>
+        /// <param name="nUsuario"></param>
+        /// <returns></returns> false si no existe usuario con ese dni, true caso contrario
         private bool BuscarDni(Usuario nUsuario)
         {
             bool retorno = false;
@@ -253,6 +267,10 @@ namespace PP_Vista
                 }
             }
             return retorno;
+        }
+        private void btn_salir_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

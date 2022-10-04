@@ -37,15 +37,19 @@ namespace PP_Vista
             {
                 int i = dtg_profes.Rows.Add();
                 dtg_profes.Rows[i].Cells[0].Value = prof.MostrarId();
-                dtg_profes.Rows[i].Cells[1].Value = prof.MostrarNombre();
+                dtg_profes.Rows[i].Cells[1].Value = prof.MostrarNombreCompleto();
             }
             foreach(Materia mat in _materias)
             {
                 int j = dtg_materias.Rows.Add();
                 dtg_materias.Rows[j].Cells[0].Value = mat.MostrarId();
-                dtg_materias.Rows[j].Cells[1].Value = mat.MostrarNombre();
+                dtg_materias.Rows[j].Cells[1].Value = mat.Nombre;
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns> la materia creada
         public Materia GetMateria()
         {
             return nuevaMateria;

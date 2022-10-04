@@ -35,12 +35,21 @@ namespace PP_clases
             get { return cursada; }
         }
         
-
+        /// <summary>
+        /// Crea una cursada para la materia con el nombre ingresado por parametro 
+        /// y la añade a la lista  de cursadas
+        /// </summary>
+        /// <param name="nombreMateria"></param>
         public void AnadirCursada(string nombreMateria)
         {
             Cursada curs = new Cursada(nombreMateria);
             cursada.Add(curs);
         }
+        /// <summary>
+        /// Busca en la lista de cursadas la que tenga el nombre de la materia pasada por parametro
+        /// </summary>
+        /// <param name="nombreMateria"></param>
+        /// <returns></returns> la cursada
         public Cursada EncontrarCursada(string nombreMateria)
         {
             foreach(Cursada c in Cursada)
@@ -52,9 +61,11 @@ namespace PP_clases
             }
             return null;
         }
+        public override string Saludar()
+        {
+            return "Bienvenido/a Estudiante: " + MostrarNombreCompleto();
+        }
 
-        
 
-        
     }
 }

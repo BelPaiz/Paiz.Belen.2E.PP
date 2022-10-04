@@ -25,6 +25,10 @@ namespace PP_Vista
             materias = maters;
             cursadas = user.Cursada;
         }
+        /// <summary>
+        /// Permite retornar la materia seleccionada
+        /// </summary>
+        /// <returns></returns> materia seleccionada
         public Materia GetMateria()
         {
             return materiaSeleccionada;
@@ -50,7 +54,11 @@ namespace PP_Vista
             }
             
         }
-        
+        /// <summary>
+        /// Comprueba si la correlativa de la materia seleccionada esta aprobada
+        /// </summary>
+        /// <param name="idCorrelat"></param>
+        /// <returns></returns> true si la correlativa esta aprobada  o  si no tiene. o false caso contrario
         private bool ComprobarCorrelatividad(int idCorrelat)
         {
             if (idCorrelat == 0)

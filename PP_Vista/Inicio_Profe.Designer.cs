@@ -48,6 +48,7 @@
             this.lbl_cargaExamen = new System.Windows.Forms.Label();
             this.btn_guardarNotas = new System.Windows.Forms.Button();
             this.nUd_notaNueva = new System.Windows.Forms.NumericUpDown();
+            this.btn_salir = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtg_materias)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtg_examenes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtg_alumnos)).BeginInit();
@@ -221,12 +222,29 @@
             this.nUd_notaNueva.Size = new System.Drawing.Size(120, 29);
             this.nUd_notaNueva.TabIndex = 10;
             // 
+            // btn_salir
+            // 
+            this.btn_salir.BackColor = System.Drawing.Color.LightGray;
+            this.btn_salir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_salir.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btn_salir.Image = ((System.Drawing.Image)(resources.GetObject("btn_salir.Image")));
+            this.btn_salir.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_salir.Location = new System.Drawing.Point(26, 454);
+            this.btn_salir.Name = "btn_salir";
+            this.btn_salir.Size = new System.Drawing.Size(95, 53);
+            this.btn_salir.TabIndex = 22;
+            this.btn_salir.Text = "salir";
+            this.btn_salir.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_salir.UseVisualStyleBackColor = false;
+            this.btn_salir.Click += new System.EventHandler(this.btn_salir_Click);
+            // 
             // frm_Inicio_Profe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.CadetBlue;
             this.ClientSize = new System.Drawing.Size(913, 548);
+            this.Controls.Add(this.btn_salir);
             this.Controls.Add(this.nUd_notaNueva);
             this.Controls.Add(this.btn_guardarNotas);
             this.Controls.Add(this.lbl_cargaExamen);
@@ -274,5 +292,6 @@
         private Button btn_guardarNotas;
         private NumericUpDown nUd_notaNueva;
         private DataGridViewTextBoxColumn examen_fecha;
+        private Button btn_salir;
     }
 }

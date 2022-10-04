@@ -66,6 +66,11 @@ namespace PP_clases
         {
             get { return _cuatrimestre; }
         }
+        /// <summary>
+        /// Compara el id pasado por parametro con los id de los alumnos inscriptos en la materia
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns> si lo encuentra devuelve el alumno caso contrario null
         public Alumno BuscarAlumno(int id)
         {
             foreach(Alumno a in alumnos)
@@ -77,10 +82,19 @@ namespace PP_clases
             }
             return null;
         }
+        /// <summary>
+        /// añade al alumno pasado por parametro a la lista de alumnos inscrptos en la materia
+        /// </summary>
+        /// <param name="alum"></param>
         public void AgregarAlumno(Alumno alum)
         {
             alumnos.Add(alum);
         }
+        /// <summary>
+        /// añade al examen pasado por parametro a la lista de examenes de la materia
+        /// y le asigna a los alumnos inscriptos en la materia el examen a sus listas
+        /// </summary>
+        /// <param name="exam"></param>
         public void AgregarExamen(Examen exam)
         {
             examenes.Add(exam);
@@ -96,19 +110,30 @@ namespace PP_clases
                 
             }
         }
-
+        /// <summary>
+        /// Muestra el id de la materia
+        /// </summary>
+        /// <returns></returns> un string con el id
         public string MostrarId()
         {
             StringBuilder sb = new StringBuilder();
             sb.Append($"{_id}");
             return sb.ToString();
         }
+        /// <summary>
+        /// Muestra el nombre de la materia
+        /// </summary>
+        /// <returns></returns> un string con el nombre
         public string MostrarNombre()
         {
             StringBuilder sb = new StringBuilder();
             sb.Append($"{_nombre}");
             return sb.ToString();
         }
+        /// <summary>
+        /// El cuatrimestre de la materia
+        /// </summary>
+        /// <returns></returns> el cuatrimestre en un string
         public string MostrarCuatri()
         {
             StringBuilder sb = new StringBuilder();

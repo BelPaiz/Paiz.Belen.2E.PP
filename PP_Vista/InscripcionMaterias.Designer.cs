@@ -119,6 +119,7 @@
             this.Controls.Add(this.dtg_materias);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "InscripcionMaterias";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Inscripcion a Materias";
             this.Load += new System.EventHandler(this.InscripcionMaterias_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtg_materias)).EndInit();

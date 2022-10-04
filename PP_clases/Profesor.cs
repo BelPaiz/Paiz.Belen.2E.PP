@@ -27,7 +27,11 @@ namespace PP_clases
         {
             get { return _materias; }
         }
-        
+        /// <summary>
+        /// se añade la materia con el nombre pasado por parametro a la lista de materias del profesor
+        /// </summary>
+        /// <param name="idMateria"></param> 
+        /// <param name="maters"></param> lista de materias
         public void AnadirMateriaProfe(int idMateria, List<Materia> maters)
         {
             foreach(Materia materia in maters)
@@ -39,6 +43,11 @@ namespace PP_clases
                 }
             }
         }
+        /// <summary>
+        /// busca las materias que tiene en su lista el profesor y las muestra
+        /// </summary>
+        /// <returns></returns> un string con la informacion de las materias o 
+        /// un string que indique que no tiene materias en su lista
         public string MostrarListaMaterias()
         {
             StringBuilder sb = new StringBuilder();
@@ -56,6 +65,12 @@ namespace PP_clases
             }
             return sb.ToString();
         }
+        /// <summary>
+        /// Compara el id pasado por parametro con los id de las materias que tiene el profesor en la lista
+        /// 
+        /// </summary>
+        /// <param name="idMateria"></param>
+        /// <returns></returns> la materia si la encuentra, caso contrario null
         public Materia GetMateria(int idMateria)
         {
             foreach(Materia m in _materias)
@@ -66,6 +81,10 @@ namespace PP_clases
                 }
             }
             return null;
+        }
+        public override string Saludar()
+        {
+            return "Bienvenido/a Profe: " + MostrarNombreCompleto();
         }
     }
 }

@@ -23,8 +23,9 @@ namespace PP_clases
             ultimoId++;
         }
 
-        
-
-       
+        public override string Saludar()
+        {
+            return "Bienvenido/a Admin: " + MostrarNombreCompleto();
+        }
     }
 }

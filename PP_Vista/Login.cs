@@ -21,6 +21,9 @@ namespace PP_Vista
             usuarios.AddRange(profes);
             usuarios.AddRange(alumnos);
         }
+        /// <summary>
+        /// Harcodea los valores ingresados y crea las distintas listas
+        /// </summary>
         private void Carga()
         {
             Admin admin1 = new Admin("Juliana", "Perez", 26358914, "123");
@@ -76,7 +79,12 @@ namespace PP_Vista
             ConectarMateriaProfe(materias, profes);
             ConectarMateriaAlumno(materias, alumnos);
         }
-
+        /// <summary>
+        /// Al clickear en ingresar se comprueba la informacion de inicio de sesion 
+        /// y si el usuario existe se redirige al inicio correspondiente
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_ingresar_Click(object sender, EventArgs e)
         {
             string buffer = txb_user.Text;
@@ -84,20 +92,27 @@ namespace PP_Vista
             bool ok = int.TryParse(buffer, out id); 
             string pass = txb_pass.Text;
             string resultado = Usuario.EncontrarUsuarioTipo(id, pass, usuarios);
-            string user = Usuario.BuscarNombreConId(id, usuarios);
             switch (resultado)
             {
                 case "admin":
-                    frm_inicioAdmin frm_InicioAdmin = new frm_inicioAdmin(user,alumnos, profes, adminds, materias);
-                    frm_InicioAdmin.Show();
-                    this.Hide();
+                    foreach (Admin ad in adminds)
+                    {
+                        if (id == ad.Id)
+                        {
+                            frm_inicioAdmin frm_InicioAdmin = new frm_inicioAdmin(ad, alumnos, profes, adminds, materias);
+                            frm_InicioAdmin.Show();
+                            this.Hide();
+                            break;
+                        }
+                    }
+                    
                     break;
                 case "profe":
                     foreach(Profesor p in profes)
                     {
                         if(id == p.Id)
                         {
-                            frm_Inicio_Profe frm_inicioProfe = new frm_Inicio_Profe(user, p);
+                            frm_Inicio_Profe frm_inicioProfe = new frm_Inicio_Profe(p);
                             frm_inicioProfe.Show();
                             this.Hide();
                             break ;
@@ -109,7 +124,7 @@ namespace PP_Vista
                     {
                         if(id == a.Id)
                         {
-                            frm_Inicio_Alumno frm_InicioAlumno = new frm_Inicio_Alumno(user, a, materias);
+                            frm_Inicio_Alumno frm_InicioAlumno = new frm_Inicio_Alumno(a, materias);
                             frm_InicioAlumno.Show();
                             this.Hide();
                             break;
@@ -121,6 +136,11 @@ namespace PP_Vista
                     break;
             }
         }
+        /// <summary>
+        /// Añade las materias harcodeadas en la lista del profesor a cargo
+        /// </summary>
+        /// <param name="m"></param>
+        /// <param name="p"></param>
         public void ConectarMateriaProfe(List<Materia> m, List<Profesor>p)
         {
             foreach (Materia materia in m)
@@ -134,6 +154,11 @@ namespace PP_Vista
                 }
             }
         }
+        /// <summary>
+        /// Añade la materia harcodeada en la lista de cursadas del alumno
+        /// </summary>
+        /// <param name="m"></param>
+        /// <param name="al"></param>
         public void ConectarMateriaAlumno(List<Materia> m, List<Alumno> al)
         {
             foreach(Materia mate in m)

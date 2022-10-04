@@ -58,6 +58,7 @@ namespace PP_Vista
             this.altaNuevoUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lbl_mater = new System.Windows.Forms.Label();
             this.lbl_Info = new System.Windows.Forms.Label();
+            this.btn_salir = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtg_listaAlumnos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUd_estado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtg_listaProfes)).BeginInit();
@@ -69,7 +70,7 @@ namespace PP_Vista
             // 
             this.lbl_bienvenida.AutoSize = true;
             this.lbl_bienvenida.Font = new System.Drawing.Font("Segoe UI", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lbl_bienvenida.Location = new System.Drawing.Point(441, 25);
+            this.lbl_bienvenida.Location = new System.Drawing.Point(45, 37);
             this.lbl_bienvenida.Name = "lbl_bienvenida";
             this.lbl_bienvenida.Size = new System.Drawing.Size(0, 50);
             this.lbl_bienvenida.TabIndex = 1;
@@ -315,12 +316,29 @@ namespace PP_Vista
             this.lbl_Info.Size = new System.Drawing.Size(0, 21);
             this.lbl_Info.TabIndex = 19;
             // 
+            // btn_salir
+            // 
+            this.btn_salir.BackColor = System.Drawing.Color.LightGray;
+            this.btn_salir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_salir.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btn_salir.Image = ((System.Drawing.Image)(resources.GetObject("btn_salir.Image")));
+            this.btn_salir.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_salir.Location = new System.Drawing.Point(34, 581);
+            this.btn_salir.Name = "btn_salir";
+            this.btn_salir.Size = new System.Drawing.Size(95, 53);
+            this.btn_salir.TabIndex = 21;
+            this.btn_salir.Text = "salir";
+            this.btn_salir.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_salir.UseVisualStyleBackColor = false;
+            this.btn_salir.Click += new System.EventHandler(this.btn_salir_Click);
+            // 
             // frm_inicioAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.CadetBlue;
             this.ClientSize = new System.Drawing.Size(1351, 656);
+            this.Controls.Add(this.btn_salir);
             this.Controls.Add(this.lbl_Info);
             this.Controls.Add(this.lbl_mater);
             this.Controls.Add(this.btn_asignarMateria);
@@ -387,5 +405,6 @@ namespace PP_Vista
         private ToolStripMenuItem altaNuevoUsuarioToolStripMenuItem;
         private Label lbl_mater;
         private Label lbl_Info;
+        private Button btn_salir;
     }
 }

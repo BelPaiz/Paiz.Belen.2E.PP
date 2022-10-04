@@ -39,10 +39,13 @@
             this.materias_presente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btn_presente = new System.Windows.Forms.Button();
             this.lbl_info = new System.Windows.Forms.Label();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.mtp_inscripcionMaterias = new System.Windows.Forms.MenuStrip();
             this.inscripcionAMateriasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btn_salir = new System.Windows.Forms.Button();
+            this.rtxb_infoMaterias = new System.Windows.Forms.RichTextBox();
+            this.lbl_infoMaterias = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dtg_cursadas)).BeginInit();
-            this.menuStrip1.SuspendLayout();
+            this.mtp_inscripcionMaterias.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbl_bienvenida
@@ -122,15 +125,15 @@
             this.lbl_info.Size = new System.Drawing.Size(0, 21);
             this.lbl_info.TabIndex = 3;
             // 
-            // menuStrip1
+            // mtp_inscripcionMaterias
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mtp_inscripcionMaterias.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.inscripcionAMateriasToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
-            this.menuStrip1.TabIndex = 4;
-            this.menuStrip1.Text = "menuStrip1";
+            this.mtp_inscripcionMaterias.Location = new System.Drawing.Point(0, 0);
+            this.mtp_inscripcionMaterias.Name = "mtp_inscripcionMaterias";
+            this.mtp_inscripcionMaterias.Size = new System.Drawing.Size(1036, 24);
+            this.mtp_inscripcionMaterias.TabIndex = 4;
+            this.mtp_inscripcionMaterias.Text = "menuStrip1";
             // 
             // inscripcionAMateriasToolStripMenuItem
             // 
@@ -139,26 +142,65 @@
             this.inscripcionAMateriasToolStripMenuItem.Text = "Inscripcion a materias";
             this.inscripcionAMateriasToolStripMenuItem.Click += new System.EventHandler(this.inscripcionAMateriasToolStripMenuItem_Click);
             // 
+            // btn_salir
+            // 
+            this.btn_salir.BackColor = System.Drawing.Color.LightGray;
+            this.btn_salir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_salir.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btn_salir.Image = ((System.Drawing.Image)(resources.GetObject("btn_salir.Image")));
+            this.btn_salir.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_salir.Location = new System.Drawing.Point(18, 385);
+            this.btn_salir.Name = "btn_salir";
+            this.btn_salir.Size = new System.Drawing.Size(95, 53);
+            this.btn_salir.TabIndex = 23;
+            this.btn_salir.Text = "salir";
+            this.btn_salir.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_salir.UseVisualStyleBackColor = false;
+            this.btn_salir.Click += new System.EventHandler(this.btn_salir_Click);
+            // 
+            // rtxb_infoMaterias
+            // 
+            this.rtxb_infoMaterias.Location = new System.Drawing.Point(753, 124);
+            this.rtxb_infoMaterias.Name = "rtxb_infoMaterias";
+            this.rtxb_infoMaterias.Size = new System.Drawing.Size(238, 152);
+            this.rtxb_infoMaterias.TabIndex = 24;
+            this.rtxb_infoMaterias.Text = "";
+            // 
+            // lbl_infoMaterias
+            // 
+            this.lbl_infoMaterias.AutoSize = true;
+            this.lbl_infoMaterias.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lbl_infoMaterias.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lbl_infoMaterias.Location = new System.Drawing.Point(776, 100);
+            this.lbl_infoMaterias.Name = "lbl_infoMaterias";
+            this.lbl_infoMaterias.Size = new System.Drawing.Size(189, 21);
+            this.lbl_infoMaterias.TabIndex = 25;
+            this.lbl_infoMaterias.Text = "Informacion de la cursada";
+            // 
             // frm_Inicio_Alumno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.CadetBlue;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1036, 450);
+            this.Controls.Add(this.lbl_infoMaterias);
+            this.Controls.Add(this.rtxb_infoMaterias);
+            this.Controls.Add(this.btn_salir);
             this.Controls.Add(this.lbl_info);
             this.Controls.Add(this.btn_presente);
             this.Controls.Add(this.dtg_cursadas);
             this.Controls.Add(this.lbl_bienvenida);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.mtp_inscripcionMaterias);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MainMenuStrip = this.menuStrip1;
+            this.MainMenuStrip = this.mtp_inscripcionMaterias;
             this.Name = "frm_Inicio_Alumno";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Inicio Alumno";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frm_Inicio_Alumno_FormClosing);
             this.Load += new System.EventHandler(this.frm_Inicio_Alumno_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtg_cursadas)).EndInit();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.mtp_inscripcionMaterias.ResumeLayout(false);
+            this.mtp_inscripcionMaterias.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -176,7 +218,10 @@
         private DataGridViewTextBoxColumn materias_presente;
         private Button btn_presente;
         private Label lbl_info;
-        private MenuStrip menuStrip1;
+        private MenuStrip mtp_inscripcionMaterias;
         private ToolStripMenuItem inscripcionAMateriasToolStripMenuItem;
+        private Button btn_salir;
+        private RichTextBox rtxb_infoMaterias;
+        private Label lbl_infoMaterias;
     }
 }

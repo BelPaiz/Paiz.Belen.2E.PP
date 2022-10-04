@@ -23,13 +23,20 @@ namespace PP_clases
         {
             get { return _nombre; }
         }
-
+        /// <summary>
+        /// Permite mostrar el nombre del examen
+        /// </summary>
+        /// <returns></returns> un string con el nombre
         public string MostrarExamenNombre()
         {
             StringBuilder sb = new StringBuilder();
             sb.Append($"{_nombre}   ");
             return sb.ToString();
         }
+        /// <summary>
+        /// Permite mostrar la nota  del examen
+        /// </summary>
+        /// <returns></returns> un string con la nota
         public string MostrarExamenFecha()
         {
             StringBuilder sb = new StringBuilder();

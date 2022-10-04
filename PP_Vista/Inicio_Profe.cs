@@ -13,7 +13,6 @@ namespace PP_Vista
 {
     public partial class frm_Inicio_Profe : Form
     {
-        private string _user;
         Profesor usuario;
 
         List<Materia> materias = new List<Materia>();
@@ -28,9 +27,8 @@ namespace PP_Vista
         {
             InitializeComponent();
         }
-        public frm_Inicio_Profe(string user, Profesor profe) :this()
+        public frm_Inicio_Profe(Profesor profe) :this()
         {
-            _user = user;
             usuario = profe;
             materias = usuario.Materias;
 
@@ -38,7 +36,7 @@ namespace PP_Vista
 
         private void frm_Inicio_Profe_Load(object sender, EventArgs e)
         {
-            this.lbl_bienvenida.Text = "Profesor/a " + _user;
+            this.lbl_bienvenida.Text = usuario.Saludar();
             RecargarListaMaterias();
         }
 
@@ -92,25 +90,32 @@ namespace PP_Vista
 
         private void btn_guardarNotas_Click(object sender, EventArgs e)
         {
-            if (materiaSeleccionada != null && examenSeleccionado >= 0)
+            if (materiaSeleccionada != null)
             {
-                if (alumnoSeleccionado == null)
+                if(examenSeleccionado >= 0)
                 {
-                    lbl_cargaExamen.Text = "Seleccione Alumno";
+                    if (alumnoSeleccionado == null)
+                    {
+                        lbl_cargaExamen.Text = "Seleccione Alumno";
+                    }
+                    else
+                    {
+                        int nota = (int)nUd_notaNueva.Value;
+                        alumnoSeleccionado.EncontrarCursada(materiaSeleccionada.Nombre).ModificarNotaExamen(examenSeleccionado, nota);
+                        lbl_cargaExamen.Text = "Notas guardadas con Exito!";
+                        dtg_alumnos.Rows.Clear();
+                        ActualizarListaAlumnos();
+                        RecargarListaAlumnos();
+                    }
                 }
                 else
                 {
-                    int nota = (int)nUd_notaNueva.Value;
-                    alumnoSeleccionado.EncontrarCursada(materiaSeleccionada.Nombre).ModificarNotaExamen(examenSeleccionado, nota);
-                    lbl_cargaExamen.Text = "Notas guardadas con Exito!";
-                    dtg_alumnos.Rows.Clear();
-                    ActualizarListaAlumnos();
-                    RecargarListaAlumnos();
+                    lbl_cargaExamen.Text = "ERROR debe seleccionar examen";
                 }
             }
             else
             {
-                lbl_cargaExamen.Text = "ERROR al guardar nota";
+                lbl_cargaExamen.Text = "ERROR debe seleccionar materia";
             }
             
            
@@ -157,7 +162,9 @@ namespace PP_Vista
             
 
         }
-
+        /// <summary>
+        /// actualiza la informacion de las listas de alumnos
+        /// </summary>
         private void ActualizarListaAlumnos()
         {
             foreach (Alumno al in alumnos)
@@ -170,17 +177,23 @@ namespace PP_Vista
                 }
             }
         }
+        /// <summary>
+        /// Rellena la informacion de los data grid view con las listas de alumnos
+        /// </summary>
         private void RecargarListaAlumnos()
         {
             foreach (Alumno al in alumnos)
             {
                 int j = dtg_alumnos.Rows.Add();
                 dtg_alumnos.Rows[j].Cells[0].Value = al.MostrarId();
-                dtg_alumnos.Rows[j].Cells[1].Value = al.MostrarNombre();
+                dtg_alumnos.Rows[j].Cells[1].Value = al.MostrarNombreCompleto();
                 dtg_alumnos.Rows[j].Cells[2].Value = al.EncontrarCursada(materiaSeleccionada.Nombre).EncontrarNotaExamen(examenSeleccionado);
                
             }
         }
+        /// <summary>
+        /// Rellena la informacion de los data grid view con las listas de materias
+        /// </summary>
         private void RecargarListaMaterias()
         {
             foreach (Materia mater in materias)
@@ -191,10 +204,16 @@ namespace PP_Vista
                 dtg_materias.Rows[j].Cells[2].Value = mater.MostrarCuatri();
             }
         }
+        /// <summary>
+        /// desempaqueta las listas de alumnos que estan inscriptos en una materia seleccionada
+        /// </summary>
         private void ExtraerAlumnosDeMaterias()
         {
             alumnos = materiaSeleccionada.Alumnos;
         }
+        /// <summary>
+        /// Rellena la informacion de los data grid view con las listas de examenes
+        /// </summary>
         private void RecargarListaExamenes()
         {
             
@@ -205,6 +224,11 @@ namespace PP_Vista
                 dtg_examenes.Rows[j].Cells[0].Value = ex.MostrarExamenNombre();
                 dtg_examenes.Rows[j].Cells[1].Value = ex.MostrarExamenFecha();
             }
+        }
+
+        private void btn_salir_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
