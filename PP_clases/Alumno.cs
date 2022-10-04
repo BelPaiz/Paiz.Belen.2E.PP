@@ -65,7 +65,24 @@ namespace PP_clases
         {
             return "Bienvenido/a Estudiante: " + MostrarNombreCompleto();
         }
-
+        public string MostrarListaCursada()
+        {
+            StringBuilder sb = new StringBuilder();
+            if (cursada.Count > 0)
+            {
+                sb.AppendLine($"Alumno Seleccionado: {MostrarNombreCompleto()}");
+                foreach (Cursada item in cursada)
+                {
+                    sb.AppendLine($"Materia: {item.Materia}");
+                    sb.AppendLine($"Estado: {item.Estado}");
+                }
+            }
+            else
+            {
+                sb.Append($"No hay materias en curso.\n");
+            }
+            return sb.ToString();
+        }
 
     }
 }

@@ -56,9 +56,11 @@ namespace PP_Vista
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.altaNuevaMateriaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.altaNuevoUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.inscribirAlumnoAMateriaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lbl_mater = new System.Windows.Forms.Label();
             this.lbl_Info = new System.Windows.Forms.Label();
             this.btn_salir = new System.Windows.Forms.Button();
+            this.lbl_infoInscripcion = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dtg_listaAlumnos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUd_estado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtg_listaProfes)).BeginInit();
@@ -276,7 +278,8 @@ namespace PP_Vista
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.altaNuevaMateriaToolStripMenuItem,
-            this.altaNuevoUsuarioToolStripMenuItem});
+            this.altaNuevoUsuarioToolStripMenuItem,
+            this.inscribirAlumnoAMateriaToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1351, 24);
@@ -296,6 +299,13 @@ namespace PP_Vista
             this.altaNuevoUsuarioToolStripMenuItem.Size = new System.Drawing.Size(121, 20);
             this.altaNuevoUsuarioToolStripMenuItem.Text = "Alta Nuevo Usuario";
             this.altaNuevoUsuarioToolStripMenuItem.Click += new System.EventHandler(this.altaNuevoUsuarioToolStripMenuItem_Click);
+            // 
+            // inscribirAlumnoAMateriaToolStripMenuItem
+            // 
+            this.inscribirAlumnoAMateriaToolStripMenuItem.Name = "inscribirAlumnoAMateriaToolStripMenuItem";
+            this.inscribirAlumnoAMateriaToolStripMenuItem.Size = new System.Drawing.Size(159, 20);
+            this.inscribirAlumnoAMateriaToolStripMenuItem.Text = "Inscribir Alumno a Materia";
+            this.inscribirAlumnoAMateriaToolStripMenuItem.Click += new System.EventHandler(this.inscribirAlumnoAMateriaToolStripMenuItem_Click);
             // 
             // lbl_mater
             // 
@@ -332,12 +342,23 @@ namespace PP_Vista
             this.btn_salir.UseVisualStyleBackColor = false;
             this.btn_salir.Click += new System.EventHandler(this.btn_salir_Click);
             // 
+            // lbl_infoInscripcion
+            // 
+            this.lbl_infoInscripcion.AutoSize = true;
+            this.lbl_infoInscripcion.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lbl_infoInscripcion.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lbl_infoInscripcion.Location = new System.Drawing.Point(1094, 450);
+            this.lbl_infoInscripcion.Name = "lbl_infoInscripcion";
+            this.lbl_infoInscripcion.Size = new System.Drawing.Size(0, 21);
+            this.lbl_infoInscripcion.TabIndex = 22;
+            // 
             // frm_inicioAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.CadetBlue;
             this.ClientSize = new System.Drawing.Size(1351, 656);
+            this.Controls.Add(this.lbl_infoInscripcion);
             this.Controls.Add(this.btn_salir);
             this.Controls.Add(this.lbl_Info);
             this.Controls.Add(this.lbl_mater);
@@ -406,5 +427,7 @@ namespace PP_Vista
         private Label lbl_mater;
         private Label lbl_Info;
         private Button btn_salir;
+        private ToolStripMenuItem inscribirAlumnoAMateriaToolStripMenuItem;
+        private Label lbl_infoInscripcion;
     }
 }

@@ -18,10 +18,12 @@ namespace PP_Vista
         private List<Profesor> _profes = new List<Profesor>();
         private List<Admin> _administ = new List<Admin>();
         public List<Materia> _materias = new List<Materia>();
-        int idSeleccionado;
+        int idSeleccionadoAlumno;
+        private Alumno alumnoSeleccionado;
         int idProfeSeleccion = 0;
         int idMateriaSeleccion = 0;
         private Usuario nuevoUsuario;
+        private Materia materiaInscripcion;
 
         private frm_inicioAdmin()
         {
@@ -59,11 +61,12 @@ namespace PP_Vista
 
                 int idSeleccion;
                 int.TryParse(value, out idSeleccion);
-                idSeleccionado = idSeleccion;
+                idSeleccionadoAlumno = idSeleccion;
                 foreach (Alumno alumno in _alumnos)
                 {
                     if (idSeleccion == alumno.Id)
                     {
+                        alumnoSeleccionado = alumno;
                         foreach(Cursada c in alumno.Cursada)
                         {
                             rtb_alumnos.Text = c.MostrarMateriaEnCurso();
@@ -79,7 +82,7 @@ namespace PP_Vista
             int estado =(int) nUd_estado.Value;
             foreach (Alumno alumno in _alumnos)
             {
-                if (idSeleccionado == alumno.Id)
+                if (idSeleccionadoAlumno == alumno.Id)
                 {
                     foreach (Cursada c in alumno.Cursada)
                     {
@@ -271,6 +274,48 @@ namespace PP_Vista
         private void btn_salir_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void inscribirAlumnoAMateriaToolStripMenuItem_Click(object sender, EventArgs e) //PUNTO EXTRA DEL PARCIAL
+        {
+            InscripcionMaterias frm_inscripcionMaterias = new InscripcionMaterias(_materias, alumnoSeleccionado);
+            DialogResult resultado = frm_inscripcionMaterias.ShowDialog();
+            if (resultado == DialogResult.OK)
+            {
+                materiaInscripcion = frm_inscripcionMaterias.GetMateria();
+                if (alumnoSeleccionado.Cursada.Count < 2)
+                {
+                    alumnoSeleccionado.AnadirCursada(materiaInscripcion.Nombre);
+                    ActualizarListaAlumnos();
+                    dtg_listaAlumnos.Rows.Clear();
+                    RecargarListaAlumnos();
+                    rtb_alumnos.Text = alumnoSeleccionado.MostrarListaCursada();
+                   
+                    lbl_infoInscripcion.Text = "Incripcion exitosa!";
+
+                }
+                else
+                {
+                    lbl_infoInscripcion.Text = "Solo puede cursar 2 \nmaterias simultaneamente";
+                }
+
+            }
+            else
+            {
+                lbl_infoInscripcion.Text = "Incripcion cancelada por el usuario";
+            }
+        }
+        private void ActualizarListaAlumnos()
+        {
+            foreach (Alumno al in _alumnos)
+            {
+                if (al.Id == alumnoSeleccionado.Id)
+                {
+                    _alumnos.Remove(al);
+                    _alumnos.Add(alumnoSeleccionado);
+                    break;
+                }
+            }
         }
     }
 }
